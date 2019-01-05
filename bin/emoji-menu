@@ -54,7 +54,7 @@ done
 
 # Default DB
 if [ ! -e "$EMOJI_MENU_DB" ]; then
-  wget -o "$EMOJI_MENU_DB" 'http://bit.ly/emoji-menu-db'
+  wget -O "$EMOJI_MENU_DB" 'http://bit.ly/emoji-menu-db'
 fi
 
 # Rofi can handle large inputs and emojis

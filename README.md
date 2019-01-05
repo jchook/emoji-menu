@@ -45,15 +45,6 @@ To customize, store one emoji per line with its keywords, e.g.
 
 Pretty simple! You can add other strings too. They don't have to be emojis.
 
-## 🧙 Options
-
-When invoking `emoji-menu`, you may pass the following options:
-
-* `-f <filename>` - Use a custom emoji database
-* `-c <command>` - Run a custom command on emoji choices
-* `-t` - Simulate typing the emoji choice using the keyboard
-
-
 ## *️⃣ Hotkeys
 
 You definitely want `emoji-menu` on a [hotkey](https://wiki.archlinux.org/index.php/Keyboard_shortcuts#Customization).
@@ -90,6 +81,16 @@ bindsym $mod+Control+x emoji-menu
 #### Other
 
 If none of the above works for you, please open an [issue](https://github.com/jchook/emoji-menu/issues/new).
+
+
+## 🧙 Options
+
+When invoking `emoji-menu`, you may pass the following options:
+
+* `-f <filename>` - Use a custom emoji database
+* `-c <command>` - Run a custom command on emoji choices
+* `-t` - Simulate typing the emoji choice using the keyboard
+
 
 ## ❤️ Thank you
 
