@@ -7,9 +7,8 @@
 
 
 
-## Depdencies
+## Dependencies
 
-How else could this fit into one line of bash?
 
 ```sh
 # For non-Debian, replace apt with your package manager
