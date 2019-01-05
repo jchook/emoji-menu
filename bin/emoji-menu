@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#
+# Emoji Menu
+#
+# Quickly find emojis and copy to clipboard.
+#
+#
+# To install:
+#
+# 1. Clean-up https://unicode.org/Public/emoji/11.0/emoji-test.txt
+#    grep -Po '(?<=   #).*'
+#
+# 2. Install xclip and rofi
+#    sudo apt install xclip rofi
+#
+# 3. Assign to a keyboard combination
+#    I use Mod+Shift+x via XMonad
+#
+
+# Config dir
+EMOJIS_FILE=${EMOJIS_FILE:-"~/.config/emoji-menu/emojis.txt"}
+
+# Rofi can handle large inputs and emojis
+rofi -p '🔍' -width 610 -dmenu \
+  < "$EMOJIS_FILE" \
+  | grep -oP '^[^\s]+' \
+  | tr -d '\n' \
+  | xclip -selection clipboard
+
