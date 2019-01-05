@@ -24,9 +24,7 @@ EMOJI_MENU_DB=${EMOJI_MENU_DB:-"$HOME/.emoji-menu-db"}
 
 # Default DB
 if [ ! -e "$EMOJI_MENU_DB" ]; then
-  curl -s 'https://unicode.org/Public/emoji/11.0/emoji-test.txt' \
-    | grep -oP '(?<=   #).*' \
-    > "$EMOJI_MENU_DB"
+  wget -o "$EMOJI_MENU_DB" 'http://bit.ly/emoji-menu-db'
 fi
 
 # Rofi can handle large inputs and emojis

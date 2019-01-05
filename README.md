@@ -20,12 +20,12 @@ Be sure to install the dependencies as well
 
 ```sh
 # For non-Debian, replace apt with your package manager
-sudo apt install xclip rofi grep coreutils
+sudo apt install xclip rofi wget grep coreutils
 ```
 
 * `xclip` lets us copy to clipboard.
 * `rofi` works like dmenu, but supports large input.
-* You already have `grep` and `coreutils`
+* You already have `wget`, `grep`, and `coreutils`
 
 
 ## Emojis
