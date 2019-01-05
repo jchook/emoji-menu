@@ -6,42 +6,9 @@
 ![](https://d3vv6lp55qjaqc.cloudfront.net/items/3F2e2K433s0T301d0Z0n/Peek%202019-01-04%2019-05%20take%205.gif?X-CloudApp-Visitor-Id=152352&v=a32b86c6)
 
 
-
-## Dependencies
-
-
-```sh
-# For non-Debian, replace apt with your package manager
-sudo apt install xclip rofi
-```
-
-* `xclip` lets us copy to clipboard.
-* `rofi` works like dmenu, but supports large input.
-
-## Emojis
-
-First, you decide which emojis and keywords you want via a simple text file. E.g.
-
-```
-✨ sparkles stars magic
-🧙 mage wizard magician
-🌍 globe earth europe africa
-```
-
-To start with **all emojis** try this:
-
-```sh
-curl -s 'https://unicode.org/Public/emoji/11.0/emoji-test.txt' \
-  | grep -oP '(?<=   #).*' \
-  > ~/.emoji-menu-db
-```
-
-The `$EMOJI_MENU_DB` environment variable defaults to `~/.emoji-menu-db`.
-
-
 ## Install
 
-Once you have your emojis, install [`emoji-menu`](https://github.com/jchook/emoji-menu/blob/master/bin/emoji-menu) to your `$PATH`.
+Simply install an [`emoji-menu`](https://github.com/jchook/emoji-menu/blob/master/bin/emoji-menu) executable to your `$PATH`.
 
 ```sh
 wget 'https://bit.ly/emoji-menu'
@@ -49,12 +16,40 @@ chmod +x emoji-menu
 sudo mv emoji-menu /usr/local/bin
 ```
 
-Alternatively you could clone the git repository and add its `bin` folder to your `$PATH`.
+Be sure to install the dependencies as well
+
+```sh
+# For non-Debian, replace apt with your package manager
+sudo apt install xclip rofi grep coreutils
+```
+
+* `xclip` lets us copy to clipboard.
+* `rofi` works like dmenu, but supports large input.
+* You already have `grep` and `coreutils`
+
+
+## Emojis
+
+By default the program automatically downloads *all emojis* from [unicode.org](https://unicode.org/Public/emoji/11.0/emoji-test.txt) on first run.
+
+The `$EMOJI_MENU_DB` environment variable defaults to `~/.emoji-menu-db`.
+
+To customize, store one emoji per line with its keywords, e.g.
+
+```
+✨ sparkles stars magic
+🧙 mage wizard magician
+🌍 globe earth europe africa
+```
 
 
 ## Hotkeys
 
-You definitely want this bad boy on a [hotkey](https://wiki.archlinux.org/index.php/Keyboard_shortcuts#Customization), e.g. <kbd>Mod</kbd> + <kbd>Ctrl</kbd> + <kbd>x</kbd>.
+You definitely want `emoji-menu` on a [hotkey](https://wiki.archlinux.org/index.php/Keyboard_shortcuts#Customization).
+
+Depending on your window manager and DE, you may have a GUI to do this, or you may need to edit a configuration file.
+
+In the examples below, I assign <kbd>Mod</kbd> + <kbd>Ctrl</kbd> + <kbd>x</kbd>.
 
 #### Generic
 
@@ -82,6 +77,14 @@ For i3 add a [bindsym](https://i3wm.org/docs/userguide.html#keybindings) to your
 ```sh
 bindsym $mod+Control+x emoji-menu
 ```
+
+#### Other
+
+If none of the above works for you, please file an [issue](https://github.com/jchook/emoji-menu/issues/new).
+
+## Thank you
+
+Thank you for checking out `emoji-menu`. I truly enjoy using it and hope you will too.
 
 ## License
 
