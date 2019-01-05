@@ -1,14 +1,14 @@
-# 🧭 Emoji Menu
+# 🎩 Emoji Menu
 
-🔍 Easily find and copy emojis on Linux. 😀
-
-
-![](https://d3vv6lp55qjaqc.cloudfront.net/items/3F2e2K433s0T301d0Z0n/Peek%202019-01-04%2019-05%20take%205.gif?X-CloudApp-Visitor-Id=152352&v=a32b86c6)
+Easily find and copy emojis on Linux. 🥳
 
 
-## Install
+![Demo](https://d3vv6lp55qjaqc.cloudfront.net/items/3F2e2K433s0T301d0Z0n/Peek%202019-01-04%2019-05%20take%205.gif?X-CloudApp-Visitor-Id=152352&v=a32b86c6)
 
-Simply install an [`emoji-menu`](https://github.com/jchook/emoji-menu/blob/master/bin/emoji-menu) executable to your `$PATH`.
+
+## ✨ Install
+
+Simply install `emoji-menu` to your `$PATH`:
 
 ```sh
 wget 'https://bit.ly/emoji-menu'
@@ -19,18 +19,19 @@ sudo mv emoji-menu /usr/local/bin
 Be sure to install the dependencies as well
 
 ```sh
-# For non-Debian, replace apt with your package manager
-sudo apt install xclip rofi wget grep coreutils
+# For non-Debian, replace apt with your package manager (e.g. yum)
+sudo apt install rofi xclip xdotool wget grep coreutils
 ```
 
-* `xclip` lets us copy to clipboard.
 * `rofi` works like dmenu, but supports large input.
-* You already have `wget`, `grep`, and `coreutils`
+* `xclip` lets us copy to clipboard.
+* `xdotool` lets us type the result.
+* You already have `wget`, `grep`, and `coreutils`.
 
 
-## Emojis
+## 👨‍🎤 Emojis
 
-By default the program automatically downloads *all emojis* from [unicode.org](https://unicode.org/Public/emoji/11.0/emoji-test.txt) on first run.
+By default the program automatically downloads *all emojis* on first run.
 
 The `$EMOJI_MENU_DB` environment variable defaults to `~/.emoji-menu-db`.
 
@@ -42,12 +43,20 @@ To customize, store one emoji per line with its keywords, e.g.
 🌍 globe earth europe africa
 ```
 
+Pretty simple! You can add other strings too. They don't have to be emojis.
 
-## Hotkeys
+## 🧙 Options
+
+When invoking `emoji-menu`, you may pass the following options:
+
+* `-f <filename>` - Use a custom emoji database
+* `-c <command>` - Run a custom command on emoji choices
+* `-t` - Simulate typing the emoji choice using the keyboard
+
+
+## *️⃣ Hotkeys
 
 You definitely want `emoji-menu` on a [hotkey](https://wiki.archlinux.org/index.php/Keyboard_shortcuts#Customization).
-
-Depending on your window manager and DE, you may have a GUI to do this, or you may need to edit a configuration file.
 
 In the examples below, I assign <kbd>Mod</kbd> + <kbd>Ctrl</kbd> + <kbd>x</kbd>.
 
@@ -70,7 +79,7 @@ If you use Xmonad as your window manager, set [keys](http://hackage.haskell.org/
     spawn "emoji-menu")
 ```
 
-#### i3
+#### i3wm
 
 For i3 add a [bindsym](https://i3wm.org/docs/userguide.html#keybindings) to your [config](https://i3wm.org/docs/userguide.html#configuring):
 
@@ -80,13 +89,13 @@ bindsym $mod+Control+x emoji-menu
 
 #### Other
 
-If none of the above works for you, please file an [issue](https://github.com/jchook/emoji-menu/issues/new).
+If none of the above works for you, please open an [issue](https://github.com/jchook/emoji-menu/issues/new).
 
-## Thank you
+## ❤️ Thank you
 
-Thank you for checking out `emoji-menu`. I truly enjoy using it and hope you will too.
+Thank you for checking out `emoji-menu`. I enjoy using it and hope you do too.
 
-## License
+## 📖 License
 
 Copyright 2019 Zinc Innovations, LLC.
 

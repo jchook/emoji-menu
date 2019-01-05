@@ -19,8 +19,38 @@
 
 set -e
 
-# Config dir
+# Emoji database location
 EMOJI_MENU_DB=${EMOJI_MENU_DB:-"$HOME/.emoji-menu-db"}
+
+# Command to run after user chooses an emoji
+EMOJI_MENU_COMMAND=${EMOJI_MENU_COMMAND:-'xclip -selection clipboard'}
+
+# Report usage
+usage() {
+  echo "Usage: $(basename "$0") [-t | -c <command>] [-f <filepath> ]" 1>&2
+  echo
+  echo "   -f <filepath>  Use a custom emoji database."
+  echo "   -c <command>   Apply a custom command to the emoji choice."
+  echo "   -t             Simulate typing the emoji choice with the keyboard."
+  echo
+  exit "$1"
+}
+
+# Type result using xdotool
+typeResult() {
+  awk '{ print "type " $0 }' | xdotool -
+}
+
+# Get Options
+while getopts ":c:f:th" o; do
+  case "${o}" in
+    f) EMOJI_MENU_DB="${OPTARG}" ;;
+    c) EMOJI_MENU_COMMAND="${OPTARG}" ;;
+    t) EMOJI_MENU_COMMAND=typeResult ;;
+    h) usage 0 ;;
+    *) usage 1 ;;
+  esac
+done
 
 # Default DB
 if [ ! -e "$EMOJI_MENU_DB" ]; then
@@ -32,5 +62,5 @@ rofi -p '🔍' -width 610 -dmenu \
   < "$EMOJI_MENU_DB" \
   | grep -oP '^[^\s]+' \
   | tr -d '\n' \
-  | xclip -selection clipboard
+  | ${EMOJI_MENU_COMMAND}
 
