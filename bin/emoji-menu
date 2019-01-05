@@ -14,15 +14,15 @@
 #    sudo apt install xclip rofi
 #
 # 3. Assign to a keyboard combination
-#    I use Mod+Shift+x via XMonad
+#    Try xbindkeys
 #
 
 # Config dir
-EMOJIS_FILE=${EMOJIS_FILE:-"~/.config/emoji-menu/emojis.txt"}
+EMOJI_MENU_DB=${EMOJI_MENU_DB:-"$HOME/.emoji-menu-db"}
 
 # Rofi can handle large inputs and emojis
 rofi -p '🔍' -width 610 -dmenu \
-  < "$EMOJIS_FILE" \
+  < "$EMOJI_MENU_DB" \
   | grep -oP '^[^\s]+' \
   | tr -d '\n' \
   | xclip -selection clipboard
