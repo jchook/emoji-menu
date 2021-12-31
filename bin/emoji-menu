@@ -36,6 +36,19 @@ usage() {
   exit "$1"
 }
 
+# Convert emoji to HEX
+ordhex() {
+  LC_CTYPE=C.UTF-8 printf 0x%x "'$1" | cut -d'x' -f2
+}
+
+# Type result using xte
+typeResultXte() {
+  HEX=$(ordhex $(cat))
+  xte \
+    'keydown Control_L' 'keydown Shift_L' 'key u' \
+    "str $HEX" 'keyup Control_L' 'keyup Shift_L'
+}
+
 # Type result using xdotool
 typeResult() {
   awk '{ print "type " $0 }' | xdotool -
@@ -54,7 +67,8 @@ done
 
 # Default DB
 if [ ! -e "$EMOJI_MENU_DB" ]; then
-  wget -O "$EMOJI_MENU_DB" 'http://bit.ly/emoji-menu-db'
+  echo "Downloading default emoji DB to $EMOJI_MENU_DB" >&2
+  wget -O "$EMOJI_MENU_DB" 'https://raw.githubusercontent.com/jchook/emoji-menu/master/data/emojis.txt'
 fi
 
 # Rofi can handle large inputs and emojis

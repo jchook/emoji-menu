@@ -11,7 +11,7 @@ Easily find and copy emojis on Linux. 🥳
 Simply install `emoji-menu` to your `$PATH`:
 
 ```sh
-wget 'https://bit.ly/emoji-menu'
+wget 'https://raw.githubusercontent.com/jchook/emoji-menu/master/bin/emoji-menu'
 chmod +x emoji-menu
 sudo mv emoji-menu /usr/local/bin
 ```
@@ -45,6 +45,28 @@ To customize, store one emoji per line with its keywords, e.g.
 
 Pretty simple! You can add other strings too. They don't have to be emojis.
 
+If you do not want to automatically download emojis, you can create your
+own `$EMOJI_MENU_DB` file (defaults to `~/.emoji-menu-db`). For example, to
+download emojis from the official source and remove skin tone variations:
+
+```sh
+curl "https://unicode.org/Public/emoji/11.0/emoji-test.txt" \
+  | grep -Po '(?<=   # ).*' \
+  | grep -v 'skin tone' \
+  > "$HOME/.emoji-menu-db"
+```
+
+
+## 🧙 Options
+
+When invoking `emoji-menu`, you may pass the following options:
+
+* `-f <filename>` - Use a custom emoji database
+* `-c <command>` - Run a custom command on emoji choices
+* `-t` - Simulate typing the emoji choice using the keyboard
+
+
+
 ## *️⃣ Hotkeys
 
 You definitely want `emoji-menu` on a [hotkey](https://wiki.archlinux.org/index.php/Keyboard_shortcuts#Customization).
@@ -53,7 +75,8 @@ In the examples below, I assign <kbd>Mod</kbd> + <kbd>Ctrl</kbd> + <kbd>x</kbd>.
 
 #### Generic
 
-For a solution that works on most window managers, try [xbindkeys](https://wiki.archlinux.org/index.php/Xbindkeys). In your config:
+For a solution that works on most window managers, try
+[xbindkeys](https://wiki.archlinux.org/index.php/Xbindkeys). In your config:
 
 ```sh
 "emoji-menu"
@@ -81,15 +104,6 @@ bindsym $mod+Control+x emoji-menu
 #### Other
 
 If none of the above works for you, please open an [issue](https://github.com/jchook/emoji-menu/issues/new).
-
-
-## 🧙 Options
-
-When invoking `emoji-menu`, you may pass the following options:
-
-* `-f <filename>` - Use a custom emoji database
-* `-c <command>` - Run a custom command on emoji choices
-* `-t` - Simulate typing the emoji choice using the keyboard
 
 
 ## ❤️ Thank you
