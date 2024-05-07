@@ -1,0 +1,25 @@
+#!/bin/bash
+# Download emoji database
+
+# Old version, direct from unicode.org, without keywords:
+# curl "https://unicode.org/Public/emoji/11.0/emoji-test.txt" \
+#   | grep -Po '(?<=   # ).*' \
+#   | grep -v 'skin tone'
+
+# New version, including keywords:
+curl 'https://raw.githubusercontent.com/muan/emojilib/main/dist/emoji-en-US.json' \
+  | jq -r '
+    to_entries |
+    map(
+      "\(.key) \(
+        (.value | map(gsub("_"; " ")) | reduce .[] as $item ([]; if index($item) == null then . + [$item] else . end) | join(" "))
+      )"
+    ) | .[]
+  ' \
+  | grep -v 'skin tone'
+
+# Some extra non-emjoi strings:
+echo "∃ exists existential quantification"
+echo "∀ for all universal quantification"
+echo "¯\_(ツ)_/¯ shrug"
+
